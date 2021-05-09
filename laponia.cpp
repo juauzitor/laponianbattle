@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#include <stdlib.h>
 #include <ctime>
+#include "pause.h"
+#include "clear.h"
 
 int main(int argc, char** argv){
 	int i,j,x;
@@ -26,9 +27,8 @@ printf("Digite o nome do jogador que representara o Sul\n");
 		printf("%s vai jogar primeiro\n", jogadorS);
 	}
 	
-	system("pause\n");
-	system("cls");
-	
+    pause();
+    clear();	
 	
 	char tabuleiro[LINHAS] [COLUNAS] ={
 	
