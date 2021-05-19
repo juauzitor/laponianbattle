@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctime>
+
+int main(int argc, char** argv){
+	int i,j,x, peca, linha,coluna,especial=1, vez=1, vez2;
+	char soldado;
+	srand(time(NULL));
+	x= rand() % 100;
+	const int LINHAS = 12;
+	const int COLUNAS= 12;
+	char jogadorN[200];
+	char jogadorS[200];
+	
+
+printf("Digite o nome do jogador que representara o Norte\n");
+	scanf("%s", jogadorN);
+printf("Digite o nome do jogador que representara o Sul\n");
+	scanf("%s", jogadorS);
+	
+	if(x%2==0){
+		printf("%s vai jogar primeiro\n", jogadorN);
+	}
+	else{
+		printf("%s vai jogar primeiro\n", jogadorS);
+	}
+	
+	system("pause\n");
+	system("cls");
+	
+	x= rand() % 100;
+	
+	char tabuleiro[LINHAS] [COLUNAS] ={
+	
+		
+		{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '~', '~', '~', '~', '~', '~', '~', '~', '~', '~', '*'},
+		{'*', '~', '~', '~', '~', '~', '~', '~', '~', '~', '~', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'} 
+	};
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+		
+	for(i=0; i<LINHAS; i++){
+		for(j=0; j<COLUNAS; j++){
+			if(tabuleiro[i][j]=='.') printf ("  ");
+			else{
+				printf("%c ", tabuleiro[i][j]);
+			}
+		}
+		printf("\n");
+	}
+	for(peca = 1; peca<=9; peca++){
+		
+		printf("%s, Escolha o tipo de soldado voce quer agora. Digite o numero.\n", jogadorN);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("# - Soldado ESPECIAL, que so pode ser colocado UMA vez, Emerald Splash! seu poder e um ataque poderoso em linha reta, que ultrapassa e destroi tudo que toca.\n");
+		scanf("%c", &soldado);
+		vez2 = 0;
+		while(vez2 == 0){
+		if (soldado == '#' || soldado == '1' || soldado == '2' || especial == 1){
+			
+		printf("%s, coloque a sua %d peca, indique a linha, em seguida a coluna:\n", jogadorN, peca);
+	    vez=1;
+		while(vez == 1){
+		scanf("%d %d", &linha, &coluna);
+	    if(tabuleiro[linha][coluna] == '.' && linha <= 4){
+		tabuleiro[linha][coluna]=soldado;
+		vez = 0;
+		if(soldado == '#'){
+	
+		especial = 0;
+		
+		} 
+		} else{
+			printf("Local invalido, tente novamente\n");
+			
+		}
+	}
+		vez2 = 1;
+	}
+	else{
+		printf("Soldado invalido. Tente novamente:\n");
+		scanf("%c", &soldado);
+	}
+	   
+	   }
+	    printf("%s, Escolha o tipo de soldado voce quer agora. Digite o numero.\n", jogadorS);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("@ - Soldado ESPECIAL, que so pode ser colocado UMA vez, Magicians Red, consegue bombardear os inimigos com uma ataques de cruz 3x3 de qualquer lugar do campo.\n");
+		scanf("%d", &soldado);
+		
+		while(vez == 1){
+		
+		scanf("%c", &soldado);
+
+	}
+		printf("%s, coloque a sua %d peca, indique a linha, em seguida a coluna:\n", jogadorS, peca);
+	    
+	    vez= 0;
+	    
+	    while(vez == 0){
+		scanf("%d %d", &linha, &coluna);
+	    
+		if(tabuleiro[linha][coluna] == '.' && linha >=7 ){
+		tabuleiro[linha][coluna]=soldado;
+	    vez = 1;
+		}
+		else{
+		 printf("Local invalido, tente novamente\n");
+		 	
+		}
+	 }
+		system("cls");
+		
+		for(i=0; i<LINHAS; i++){
+		for(j=0; j<COLUNAS; j++){
+			if(tabuleiro[i][j]=='.') printf ("  ");
+			else{
+				printf("%c ", tabuleiro[i][j]);
+			}
+		}
+		printf("\n");
+	}
+
+	
+	
+	
+	
+	
+ 
+}
+	return 0;
+}
