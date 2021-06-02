@@ -1,0 +1,787 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctime>
+#include <locale.h>
+
+
+int main(int argc, char** argv){
+	setlocale(LC_ALL,"Portuguese");
+	int i,j,x, peca, linha,coluna,especial=1, vez=1, vez2, especial2=1, linha2, coluna2, vez3, vitoria=0;
+	char soldado, acao, direcao;
+	srand(time(NULL));
+	x= rand() % 100;
+	const int LINHAS = 12;
+	const int COLUNAS= 12;
+	char jogadorN[200];
+	char jogadorS[200];
+
+
+printf("Digite o nome do jogador que representará o Norte:\n");
+	scanf("%s", jogadorN);
+printf("Digite o nome do jogador que representará o Sul:\n");
+	scanf("%s", jogadorS);
+
+	if(x%2==0){
+		printf("%s vai jogar primeiro\n", jogadorN);
+	}
+	else{
+		printf("%s vai jogar primeiro\n", jogadorS);
+	}
+
+	system("pause\n");
+	system("cls");
+
+	
+
+	char tabuleiro[LINHAS] [COLUNAS] ={
+
+
+		{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '~', '~', '~', '~', '~', '~', '~', '~', '~', '~', '*'},
+		{'*', '~', '~', '~', '~', '~', '~', '~', '~', '~', '~', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
+		{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'} 
+	};
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+
+	for(i=0; i<LINHAS; i++){
+		for(j=0; j<COLUNAS; j++){
+			if(tabuleiro[i][j]=='.') printf ("  ");
+			else{
+				printf("%c ", tabuleiro[i][j]);
+			}
+		}
+		printf("\n");
+	}
+
+if(x%2==0){
+
+	for(peca = 1; peca<=1; peca++){
+
+	// Vez do jogador Norte como primeiro jogador.
+		printf("%s, Escolha o tipo de soldado que você quer agora. Digite o número:\n", jogadorN);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("# - Soldado ESPECIAL, que só pode ser colocado UMA vez, Emerald Splash! seu poder é um ataque poderoso em linha reta, que ultrapassa e destroi tudo que toca.\n");
+
+		scanf(" %c", &soldado);
+
+		vez2 = 0;
+		while(vez2 == 0){
+		if (soldado == '1' || soldado == '2' || soldado == '#' && especial == 1){
+
+		printf("%s, digite a posição da sua %d° peça, indique a linha e em seguida a coluna:\n", jogadorN, peca);
+
+		vez=1;
+		while(vez == 1){
+		scanf("%d %d", &linha, &coluna);
+	    if(tabuleiro[linha][coluna] == '.' && linha <= 4){
+		tabuleiro[linha][coluna]=soldado;
+		vez = 0;
+		if(soldado == '#'){
+
+		especial = 0;
+
+		} 
+		} else{
+			printf("Local inválido, tente novamente:\n");
+
+		}
+	}
+		vez2 = 1;
+	}
+	else{
+		printf("Soldado inválido. Tente novamente:\n");
+		scanf("%c", &soldado);
+	}
+
+	   }
+	   system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+	// Vez do jogador Sul como segundo jogador.
+	    printf("%s, Escolha o tipo de soldado que você quer agora. Digite o número:\n", jogadorS);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("@ - Soldado ESPECIAL, que só pode ser colocado UMA vez, Magicians Red! seu poder é um ataque poderoso em cruz, 3x3 que queima os inimigos na área.\n");
+
+		scanf(" %c", &soldado);
+
+		vez2 = 0;
+		while(vez2 == 0){
+		if (soldado == '1' || soldado == '2' || soldado == '@' && especial2 == 1){
+
+		printf("%s, digite a posição da sua %d° peça, indique a linha e em seguida a coluna:\n", jogadorS, peca);
+
+		vez=1;
+		while(vez == 1){
+		scanf("%d %d", &linha, &coluna);
+	    if(tabuleiro[linha][coluna] == '.' && linha >= 7){
+		tabuleiro[linha][coluna]=soldado;
+		vez = 0;
+		if(soldado == '@'){
+
+		especial2 = 0;
+
+		} 
+		} else{
+			printf("Local inválido, tente novamente:\n");
+
+		}
+	}
+		vez2 = 1;
+	}
+	else{
+		printf("Soldado inválido. Tente novamente:\n");
+		scanf("%c", &soldado);
+	}
+
+	   }
+	   system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+}
+}
+else{
+		for(peca = 1; peca<=1; peca++){
+
+	// Vez do jogador Sul como primeiro jogador.
+		printf("%s, Escolha o tipo de soldado que você quer agora. Digite o número:\n", jogadorS);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("@ - Soldado ESPECIAL, que só pode ser colocado UMA vez, Magicians Red! seu poder é um ataque poderoso em cruz, 3x3 que queima os inimigos na área.\n");
+
+		scanf(" %c", &soldado);
+
+		vez2 = 0;
+		while(vez2 == 0){
+		if (soldado == '1' || soldado == '2' || soldado == '@' && especial2 == 1){
+
+		printf("%s, digite a posição da sua %d° peça, indique a linha e em seguida a coluna:\n", jogadorS, peca);
+
+		vez=1;
+		while(vez == 1){
+		scanf("%d %d", &linha, &coluna);
+	    if(tabuleiro[linha][coluna] == '.' && linha >= 7){
+		tabuleiro[linha][coluna]=soldado;
+		vez = 0;
+		if(soldado == '@'){
+
+		especial2 = 0;
+
+		} 
+		} else{
+			printf("Local inválido, tente novamente:\n");
+
+		}
+	}
+		vez2 = 1;
+	}
+	else{
+		printf("Soldado inválido. Tente novamente:\n");
+		scanf("%c", &soldado);
+	}
+
+	   }
+	   system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+		// Vez do jogador Norte como segundo jogador.
+		printf("%s, Escolha o tipo de soldado que você quer agora. Digite o número:\n", jogadorN);
+		printf("1 - Soldado que atira em linha reta.\n");
+		printf("2 - Soldado que atira em diagonal.\n");
+		printf("# - Soldado ESPECIAL, que só pode ser colocado UMA vez, Emerald Splash! seu poder é um ataque poderoso em linha reta, que ultrapassa e destroi tudo que toca.\n");
+
+		scanf(" %c", &soldado);
+
+		vez2 = 0;
+		while(vez2 == 0){
+		if (soldado == '1' || soldado == '2' || soldado == '#' && especial == 1){
+
+		printf("%s, digite a posição da sua %d° peça, indique a linha e em seguida a coluna:\n", jogadorN, peca);
+
+		vez=1;
+		while(vez == 1){
+		scanf("%d %d", &linha, &coluna);
+	    if(tabuleiro[linha][coluna] == '.' && linha <= 4){
+		tabuleiro[linha][coluna]=soldado;
+		vez = 0;
+		if(soldado == '#'){
+
+		especial = 0;
+
+		} 
+		} else{
+			printf("Local inválido, tente novamente:\n");
+
+		}
+	}
+		vez2 = 1;
+	}
+	else{
+		printf("Soldado inválido. Tente novamente:\n");
+		scanf(" %c", &soldado);
+	}
+
+	   }
+	   system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+}
+system("pause");
+system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+
+}
+
+//Acabou os posicionamentos de tropa, agora é a movimentacao e ataque.
+printf("Todas as tropas foram posicionadas, quem vai vencer?\nO jogador tem 2 opções, movimentar ou atacar.\n");
+//Jogardor Norte primeiro
+while(vitoria == 0){
+
+if(x%2 == 0){
+	
+	printf("%s, Selecione o soldado que voce gostaria de interagir. Digite a posição dele, primeiro linha depois coluna:\nOBS:escolha tropas apenas do seu campo.(Norte)", jogadorN);
+    vez = 0;
+    vez2 = 0;
+while(vez == 0){
+	scanf(" %d %d", &linha, &coluna);
+    	
+if(tabuleiro[linha][coluna] == '.' || tabuleiro[linha][coluna] == '*' || tabuleiro[linha][coluna] == '~' || linha > 4){ 	
+	printf("Local inválido. Tente novamente.\n");
+
+}
+else{
+	while( vez2 == 0){
+	printf("O que você gostaria de fazer?\nDigite A para atarcar ou M para movimentar\n "); 
+	scanf(" %c", &acao);
+	vez =1;
+	
+	if(acao == 'A' || acao == 'a'){
+	printf("Voce escolheu atacar.");
+	vez2 = 1;
+	if(tabuleiro[linha][coluna] =='1'){
+	
+	
+	}
+	if(tabuleiro[linha][coluna] == '2'){
+	
+	
+	}
+	if(tabuleiro[linha][coluna] == '#'){
+	
+	
+	}
+	
+	}
+	if(acao == 'M' || acao == 'm'){
+	printf("Voce escolheu movimentar.\nOBS: Soldados podem se movimentar apenas uma unidade. O soldado nao pode ocupar rios, montanhas, e outros soldados\n");
+	vez2 = 1;
+	vez3 = 0;
+	printf("Digite F - para o soldado ir para frente.\nDigite T - para o soldado ir para trás.\nDigite E - para o soldado ir para esquerda\nDigite D - para o soldado ir para direita.\nDigite V - caso seu soldado esteja cercado, você voltará para o menu de ataque ou movimento.\n");
+	scanf(" %c", &direcao);
+	
+	while(vez3 == 0){
+	
+	if(direcao == 'F' || direcao == 'f' ){
+	  if(tabuleiro[linha + 1][coluna] == '.'){
+	  	
+	tabuleiro[linha+ 1][coluna] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';
+	vez3 = 1;	
+     } else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+	} 
+	if(direcao == 'T'  || direcao == 't'){
+	if (tabuleiro[linha - 1][coluna] == '.'){
+	
+	    tabuleiro[linha - 1][coluna] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	 
+	if(direcao == 'E' || direcao == 'e' ){
+	if(tabuleiro[linha] [coluna + 1] == '.'){
+	 tabuleiro[linha][coluna + 1] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if(direcao == 'D' || direcao == 'd' ){
+	if (tabuleiro[linha][coluna - 1] == '.'){
+	
+	tabuleiro[linha ][coluna - 1 ] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';	
+	vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if( direcao == 'V'|| direcao == 'v'){
+		vez3 = 1;
+		
+		
+	}
+} //while
+
+	}// Ação M
+ if(acao != 'A' && acao != 'a' && acao != 'M' && acao != 'm'){
+	printf("Ação inválida.\n");	
+
+	
+
+	}
+	}// While da ação
+	system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+	
+} // Seleção do soldado
+} // While vez normal
+
+// Vez do Sul escolher
+printf("%s, Selecione o soldado que voce gostaria de interagir. Digite a posição dele, primeiro linha depois coluna:\nOBS:escolha tropas apenas do seu campo.(Sul)", jogadorS);
+    vez = 0;
+    vez2 = 0;
+while(vez == 0){
+	scanf(" %d %d", &linha, &coluna);
+    	
+if(tabuleiro[linha][coluna] == '.' || tabuleiro[linha][coluna] == '*' || tabuleiro[linha][coluna] == '~' || linha < 7){ 	
+	printf("Local inválido. Tente novamente.\n");
+
+}
+else{
+	while( vez2 == 0){
+	printf("O que você gostaria de fazer?\nDigite A para atarcar ou M para movimentar\n "); 
+	scanf(" %c", &acao);
+	vez =1;
+	
+	if(acao == 'A' || acao == 'a'){
+	printf("Voce escolheu atacar.");
+	vez2 = 1;
+	}
+	if(acao == 'M' || acao == 'm'){
+	printf("Voce escolheu movimentar.\nOBS: Soldados podem se movimentar apenas uma unidade. O soldado nao pode ocupar rios, montanhas, e outros soldados\n");
+	vez2 = 1;
+	vez3 = 0;
+	printf("Digite F - para o soldado ir para frente.\nDigite T - para o soldado ir para trás.\nDigite E - para o soldado ir para esquerda\nDigite D - para o soldado ir para direita.\nDigite V - caso seu soldado esteja cercado, você voltará para o menu de ataque ou movimento.\n");
+	scanf(" %c", &direcao);
+	
+	while(vez3 == 0){
+	
+	if(direcao == 'F' || direcao == 'f' ){
+	  if(tabuleiro[linha -1][coluna] == '.'){
+	  	
+	tabuleiro[linha- 1][coluna] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';
+	vez3 = 1;	
+     } else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+	} 
+	if(direcao == 'T'  || direcao == 't'){
+	if (tabuleiro[linha + 1][coluna] == '.'){
+	
+	    tabuleiro[linha + 1][coluna] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	 
+	if(direcao == 'E' || direcao == 'e' ){
+	if(tabuleiro[linha] [coluna - 1] == '.'){
+	 tabuleiro[linha][coluna - 1] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if(direcao == 'D' || direcao == 'd' ){
+	if (tabuleiro[linha][coluna + 1] == '.'){
+	
+	tabuleiro[linha ][coluna + 1 ] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';	
+	vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if( direcao == 'V'|| direcao == 'v'){
+		vez3 = 1;
+		
+		
+	}
+} //while
+
+	}// Ação M
+ if(acao != 'A' && acao != 'a' && acao != 'M' && acao != 'm'){
+	printf("Ação inválida.\n");	
+
+	
+
+	}
+	}// While da ação
+	system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+
+
+} // if jogar 1°
+
+	
+
+
+	
+  
+//Jogador Sul primeiro
+}}
+else{
+	printf("%s, Selecione o soldado que voce gostaria de interagir. Digite a posição dele, primeiro linha depois coluna:\nOBS:escolha tropas apenas do seu campo.(Sul)", jogadorS);
+    vez = 0;
+    vez2 = 0;
+while(vez == 0){
+	scanf(" %d %d", &linha, &coluna);
+    	
+if(tabuleiro[linha][coluna] == '.' || tabuleiro[linha][coluna] == '*' || tabuleiro[linha][coluna] == '~' || linha < 7){ 	
+	printf("Local inválido. Tente novamente.\n");
+
+}
+else{
+	while( vez2 == 0){
+	printf("O que você gostaria de fazer?\nDigite A para atarcar ou M para movimentar\n "); 
+	scanf(" %c", &acao);
+	vez =1;
+	
+	if(acao == 'A' || acao == 'a'){
+	printf("Voce escolheu atacar.");
+	vez2 = 1;
+	}
+	if(acao == 'M' || acao == 'm'){
+	printf("Voce escolheu movimentar.\nOBS: Soldados podem se movimentar apenas uma unidade. O soldado nao pode ocupar rios, montanhas, e outros soldados\n");
+	vez2 = 1;
+	vez3 = 0;
+	printf("Digite F - para o soldado ir para frente.\nDigite T - para o soldado ir para trás.\nDigite E - para o soldado ir para esquerda\nDigite D - para o soldado ir para direita.\nDigite V - caso seu soldado esteja cercado, você voltará para o menu de ataque ou movimento.\n");
+	scanf(" %c", &direcao);
+	
+	while(vez3 == 0){
+	
+	if(direcao == 'F' || direcao == 'f' ){
+	  if(tabuleiro[linha - 1][coluna] == '.'){
+	  	
+	tabuleiro[linha - 1][coluna] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';
+	vez3 = 1;	
+     } else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+	} 
+	if(direcao == 'T'  || direcao == 't'){
+	if (tabuleiro[linha + 1][coluna] == '.'){
+	
+	    tabuleiro[linha + 1][coluna] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	 
+	if(direcao == 'E' || direcao == 'e' ){
+	if(tabuleiro[linha] [coluna - 1] == '.'){
+	 tabuleiro[linha][coluna - 1] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if(direcao == 'D' || direcao == 'd' ){
+	if (tabuleiro[linha][coluna + 1] == '.'){
+	
+	tabuleiro[linha ][coluna + 1 ] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';	
+	vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if( direcao == 'V'|| direcao == 'v'){
+		vez3 = 1;
+		
+		
+	}
+} //while
+
+	}// Ação M
+ if(acao != 'A' && acao != 'a' && acao != 'M' && acao != 'm'){
+	printf("Ação inválida.\n");	
+
+	
+
+	}
+	}// While da ação
+	system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+	
+} // Seleção do soldado
+} // While vez normal
+
+// Vez do Norte escolher
+printf("%s, Selecione o soldado que voce gostaria de interagir. Digite a posição dele, primeiro linha depois coluna:\nOBS:escolha tropas apenas do seu campo.(Norte)", jogadorN);
+    vez = 0;
+    vez2 = 0;
+while(vez == 0){
+	scanf(" %d %d", &linha, &coluna);
+    	
+if(tabuleiro[linha][coluna] == '.' || tabuleiro[linha][coluna] == '*' || tabuleiro[linha][coluna] == '~' || linha > 4){ 	
+	printf("Local inválido. Tente novamente.\n");
+
+}
+else{
+	while( vez2 == 0){
+	printf("O que você gostaria de fazer?\nDigite A para atarcar ou M para movimentar\n "); 
+	scanf(" %c", &acao);
+	vez =1;
+	
+	if(acao == 'A' || acao == 'a'){
+	printf("Voce escolheu atacar.");
+	vez2 = 1;
+	}
+	if(acao == 'M' || acao == 'm'){
+	printf("Voce escolheu movimentar.\nOBS: Soldados podem se movimentar apenas uma unidade. O soldado nao pode ocupar rios, montanhas, e outros soldados\n");
+	vez2 = 1;
+	vez3 = 0;
+	printf("Digite F - para o soldado ir para frente.\nDigite T - para o soldado ir para trás.\nDigite E - para o soldado ir para esquerda\nDigite D - para o soldado ir para direita.\nDigite V - caso seu soldado esteja cercado, você voltará para o menu de ataque ou movimento.\n");
+	scanf(" %c", &direcao);
+	
+	while(vez3 == 0){
+	
+	if(direcao == 'F' || direcao == 'f' ){
+	  if(tabuleiro[linha +1][coluna] == '.'){
+	  	
+	tabuleiro[linha + 1][coluna] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';
+	vez3 = 1;	
+     } else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+	} 
+	if(direcao == 'T'  || direcao == 't'){
+	if (tabuleiro[linha - 1][coluna] == '.'){
+	
+	    tabuleiro[linha - 1][coluna] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	 
+	if(direcao == 'E' || direcao == 'e' ){
+	if(tabuleiro[linha] [coluna + 1] == '.'){
+	 tabuleiro[linha][coluna + 1] = tabuleiro[linha][coluna];
+		tabuleiro[linha][coluna] = '.';	
+		vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if(direcao == 'D' || direcao == 'd' ){
+	if (tabuleiro[linha][coluna - 1] == '.'){
+	
+	tabuleiro[linha ][coluna - 1 ] = tabuleiro[linha][coluna];
+	tabuleiro[linha][coluna] = '.';	
+	vez3 = 1;	
+		
+	}
+	else{
+     	printf("Posição inválida. Tente novamente:\n");
+     	scanf(" %c", &direcao);
+	 }
+}
+	if( direcao == 'V'|| direcao == 'v'){
+		vez3 = 1;
+		
+		
+	}
+} //while
+
+	}// Ação M
+ if(acao != 'A' && acao != 'a' && acao != 'M' && acao != 'm'){
+	printf("Ação inválida.\n");	
+
+	
+
+	}
+	}// While da ação
+	system("cls");
+
+		printf("Norte:%s\n", jogadorN);
+		printf("Sul:%s\n", jogadorS);
+
+		for(i=0; i<LINHAS; i++){
+			for(j=0; j<COLUNAS; j++){
+				if(tabuleiro[i][j]=='.') printf ("  ");
+				else{
+					printf("%c ", tabuleiro[i][j]);
+				}
+			}
+			printf("\n");
+		}
+	
+	
+}
+}
+
+	
+}
+}
+return 0;
+}
