@@ -2,10 +2,17 @@
 
 typedef char tp_pieces;
 
+    
 typedef struct {
+    char name[100]; // Nome do jogador
+}tp_player;
+
+typedef struct {    
     tp_pieces unit;
 }tp_unit;
 
+
+/*
 char soldier_attack(int unit_line, int *unit_row, tp_board *b, int *player_turn, int *line){
     int n;
     char unit_type;
@@ -46,3 +53,4 @@ void add_pieces(tp_stack *p1, tp_stack *p2){
         push(p2, ps2[i]);
     }
 }
+*/

@@ -1,14 +1,21 @@
 // Carlos Henrique Racobaldo Luz Montes, Fernando Antônio Marques Schettini, Francielle Andrade Cardoso, João Vitor Mendes Pinto dos Santos
 
 #include <stdio.h>
-#include "canvas.h"
-#include "stack.h"
-#include "queue.h"
+#include <string.h> // usando para testar os jogadores
+//#include "canvas.h"
+//#include "stack.h"
+//#include "queue.h"
 #include "pieces.h"
-#include "rules.h"
+//#include "rules.h"
 #define NAME 200
 
 int main(int argc, char *argv[]){
+    tp_player first;
+    strcpy(first.name, "Joao");    
+    printf("%s\n", first.name);
+
+
+/*
     tp_board game_board;
     tp_stack first_player_pieces, second_player_pieces;
     tp_queue q1;
@@ -65,6 +72,7 @@ int main(int argc, char *argv[]){
         }
         clear();
         print_board(&game_board);
-    }
+    }bin/
+    */
     return 0;
 }
